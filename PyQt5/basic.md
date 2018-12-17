@@ -42,26 +42,26 @@
           '''
           Set initial ui
           '''
-          self.setWindowTitle('My First Application')
-          self.move(300, 300)
-          self.resize(400, 200)
-          self.show()
+          self.setWindowTitle('My First Application')   # 타이틀바에 나타나는 창의 제목
+          self.move(300, 300)                           # 위젯을 스크린의 x = 300px, y = 300px의 위치로 이동
+          self.resize(400, 200)                         # 위젯의 너비와 높이를 결정
+          self.show()                                   # 위젯을 스크린에 보여줌
 
 
   if __name__ == '__main__':
 
-      APP = QApplication(sys.argv)
+      APP = QApplication(sys.argv)                      # 모든 PyQt5 어플리케이션은 어플리케이션 객체를 생성해야 한다.
       ex = MyApp()
       sys.exit(APP.exec_())
 
 ```
-
-  - ["pylint can't find QWidget and QApplication" 에러가 발생한 경우](https://stackoverflow.com/questions/46337716/pylint-cant-find-qwidget-and-qapplication)
-    - 같은 폴더에 다음 코드를 .pylintrc 파일을 생성해서 입력 후 저장
+  - [QApplication 공식 문서](https://doc.qt.io/qt-5/qapplication.html)
+  - ERROR
+    - [pylint 가 "missing module docstring" 라는 오류를 나타낸 경우](http://meonggae.blogspot.com/2017/03/git-pylint-pep8.html)
+    - ["pylint can't find QWidget and QApplication" 에러가 발생한 경우](https://stackoverflow.com/questions/46337716/pylint-cant-find-qwidget-and-qapplication)
+      - 같은 폴더에 다음 코드를 .pylintrc 파일을 생성해서 입력 후 저장
 
 ```
   [MASTER]
   extension-pkg-whitelist=PyQt5
 ```
-
-  - [pylint 가 "missing module docstring" 라는 오류를 나타낸 경우](http://meonggae.blogspot.com/2017/03/git-pylint-pep8.html)
