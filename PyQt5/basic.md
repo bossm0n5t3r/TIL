@@ -2,7 +2,7 @@
 
 ## 0. 설치
 
-    - [참고링크](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html)
+[참고링크](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html)
 
 ```
     pip3 install PyQt5
