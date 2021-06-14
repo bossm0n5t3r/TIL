@@ -17,6 +17,7 @@
   - [프로토콜 컴파일러 플러그인 설치하기](#프로토콜-컴파일러-플러그인-설치하기)
     - [도커로 설치해서 사용하기](#도커로-설치해서-사용하기)
     - [직접 설치하기](#직접-설치하기)
+  - [간단한 grpc-server 띄워보기](#간단한-grpc-server-띄워보기)
 
 ---
 
@@ -286,3 +287,35 @@ go: downloading google.golang.org/protobuf v1.23.0
   	Try 'go install google.golang.org/protobuf/cmd/protoc-gen-go@latest' to install the latest version
   ```
   - 친절히 어떤걸 사용하라고 까지 나오니... 그걸 사용하면 된다.
+
+## 간단한 grpc-server 띄워보기
+
+- [https://grpc.io/docs/languages/go/quickstart/](https://grpc.io/docs/languages/go/quickstart/)를 참고해서 간단한 grpc-server를 띄워보도록 하겠다.
+- 우선 `Prerequisites`를 보고 미리 준비해보자.
+  - [직접 설치하기](#직접-설치하기)보고 따라하면 된다.
+- 원하는 모든 코드는 [https://github.com/grpc/grpc-go/tree/master/examples/helloworld](https://github.com/grpc/grpc-go/tree/master/examples/helloworld)안에 있다.
+- 우선 `api` 폴더 아래에 `helloworld/helloworld.proto` 라는 파일을 만들자.
+  - 안쪽 코드는 [https://github.com/grpc/grpc-go/blob/master/examples/helloworld/helloworld/helloworld.proto](https://github.com/grpc/grpc-go/blob/master/examples/helloworld/helloworld/helloworld.proto)를 참고하면 된다.
+  - 수정해야할 내용은 `option go_package =` 뒤에만 본인 패키지를 적으면 되는 것 같다.
+    - 나는 `option go_package = "github.com/bossm0n5t3r/learning-go/api/helloworld";` 이렇게 수정했다.
+- 그 다음 [`Regenerate gRPC code`](https://grpc.io/docs/languages/go/quickstart/#regenerate-grpc-code)를 따라하면 된다.
+  - 마지막의 파일 경로를 `./api/helloworld/helloworld.proto` 로 하면 작업하는 루트 디렉터리에서도 잘 된다.
+  - 작업을 완료하면, `helloworld.pb.go`, `helloworld_grpc.pb.go` 라는 두 개의 파일이 생성된다.
+- 그 뒤 `cmd/grpc_server/main.go` 파일을 [https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go](https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_server/main.go) 내용으로 생성하자.
+  - 추가적으로 수정해야할 내용은 `pb "github.com/bossm0n5t3r/learning-go/api/helloworld"` 정도이다.
+- 그리고 아직 `"google.golang.org/grpc"`를 설치하지 않았다면, 아래 명령어로 설치해주자.
+
+```sh
+go get -u google.golang.org/grpc
+go get google.golang.org/protobuf/reflect/protoreflect@v1.26.0
+go get google.golang.org/protobuf/runtime/protoimpl@v1.26.0
+```
+
+- 이제 설치가 다 끝났고, 위에 `helloworld.pb.go`, `helloworld_grpc.pb.go` 도 멀쩡히 잘 생성되었다면, 아래 명렁어를 통해서 서버를 실행하자.
+
+```sh
+ go run cmd/grpc_server/main.go
+2021/06/15 01:00:03 server listening at [::]:50051
+```
+
+- 잘 실행된 것을 볼 수 있다.
