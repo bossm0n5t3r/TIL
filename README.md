@@ -1,13 +1,7 @@
 # TIL
 
-## Git
+## [Git](./Git/README.md)
 
-- [README.md](./Git/README.md)
+### [GitHub](./Git/GitHub/README.md)
 
-### GitHub
-
-- [README.md](./Git/GitHub/README.md)
-
-## Go
-
-- [README.md](./Go/README.md)
+## [Go](./Go/README.md)
