@@ -15,8 +15,8 @@
     - [/cmd](#cmd)
   - [GOPATH, PATH 설정하기](#gopath-path-설정하기)
   - [프로토콜 컴파일러 플러그인 설치하기](#프로토콜-컴파일러-플러그인-설치하기)
-    - [직접 설치하기](#직접-설치하기)
     - [도커로 설치해서 사용하기](#도커로-설치해서-사용하기)
+    - [직접 설치하기](#직접-설치하기)
 
 ---
 
@@ -168,18 +168,6 @@ export PATH="$PATH:$GOPATH/bin"
 
 - 이 부분은 직접 설치하는 방법도 있는데, 도커를 통해서 깔끔하게 설치하는 방법을 알게 되어, 도커 방법으로 진행해 보려고 한다.
 
-### 직접 설치하기
-
-- 참고링크
-  - [https://grpc.io/docs/languages/go/quickstart/#prerequisites](https://grpc.io/docs/languages/go/quickstart/#prerequisites)
-
-```sh
-$ go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
-$ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
-```
-
-- 물론 이 방법은 직접 해보지도 않아서 결과가 없다.
-
 ### 도커로 설치해서 사용하기
 
 - 참고링크
@@ -187,6 +175,13 @@ $ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
   - [https://github.com/znly/docker-protobuf](https://github.com/znly/docker-protobuf)
 - `znly` 라는 어플에서 만들어서 사용하는 도커라고 한다.
   - 실제로 도커허브에서 보면 `100K+` 정도니 많이들 사용하는 모양이다.
+- **그런데 이 방법으로는 `protoc-gen-go-grpc`가 없기 때문에 문제가 발생한다.**
+  ```sh
+   docker run --rm -v $(pwd):$(pwd) -w $(pwd) znly/protoc -I. --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative helloworld/helloworld.proto
+  protoc-gen-go-grpc: program not found or is not executable
+  --go-grpc_out: protoc-gen-go-grpc: Plugin failed with status code 1.
+  ```
+  - 그래서 직접 설치해서 진행하기로 했다.
 - 설치하기
 
 ```sh
@@ -268,3 +263,26 @@ Parse PROTO_FILES and generate output based on the options given:
 --python_out=OUT_DIR        Generate Python source file.
 --ruby_out=OUT_DIR          Generate Ruby source file.
 ```
+
+### 직접 설치하기
+
+- 참고링크
+  - [https://grpc.io/docs/languages/go/quickstart/#prerequisites](https://grpc.io/docs/languages/go/quickstart/#prerequisites)
+
+```sh
+ go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+go: downloading google.golang.org/protobuf v1.26.0
+
+ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+go: downloading google.golang.org/grpc v1.38.0
+go: downloading google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0
+go: downloading google.golang.org/protobuf v1.23.0
+```
+
+- **`@latest` 또는 버전을 꼭 명시**해줘야한다. 이를 명시하지 않으면 다음과 같은 에러가 발생한다.
+  ```sh
+   go install google.golang.org/protobuf/cmd/protoc-gen-go
+  go install: version is required when current directory is not in a module
+  	Try 'go install google.golang.org/protobuf/cmd/protoc-gen-go@latest' to install the latest version
+  ```
+  - 친절히 어떤걸 사용하라고 까지 나오니... 그걸 사용하면 된다.
