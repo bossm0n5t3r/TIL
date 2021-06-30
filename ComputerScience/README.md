@@ -10,7 +10,7 @@
 
 ## CAP Theorem (Brewer's theorem)
 
-![truth-of-cap-theorem-diagram.png](../assets/images/ComputerScience/truth-of-cap-theorem-diagram.png)
+![truth-of-cap-theorem-diagram.png](../assets/images/ComputerScience/truth-of-cap-theorem-diagram.png)[1]
 
 > It is impossible for a distributed data store to simultaneously provide more than two out of the following three guarantees.
 
@@ -65,3 +65,5 @@
 - [https://en.wikipedia.org/wiki/CAP_theorem](https://en.wikipedia.org/wiki/CAP_theorem)
 - [https://www.ibm.com/cloud/learn/cap-theorem](https://www.ibm.com/cloud/learn/cap-theorem)
 - [https://ohjongsung.io/2019/05/01/cap-%EC%9D%B4%EB%A1%A0%EA%B3%BC-pacelc-%EC%9D%B4%EB%A1%A0](https://ohjongsung.io/2019/05/01/cap-%EC%9D%B4%EB%A1%A0%EA%B3%BC-pacelc-%EC%9D%B4%EB%A1%A0)
+
+[1]: https://ohjongsung.io/2019/05/01/cap-%EC%9D%B4%EB%A1%A0%EA%B3%BC-pacelc-%EC%9D%B4%EB%A1%A0
