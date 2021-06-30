@@ -9,7 +9,7 @@
 
 ## MVC (Model-View-Controller)
 
-![MVC-Process.svg](../assets/images/SoftwareDesignPattern/MVC-Process.svg)
+![MVC-Process.svg](../assets/images/SoftwareDesignPattern/MVC-Process.svg)[1]
 
 ### Model
 
@@ -43,3 +43,5 @@
 ### References
 
 - [https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+
+[1]: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
