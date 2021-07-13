@@ -73,6 +73,52 @@ val ab: A = object : A(1), B {
 
 #### Using anonymous object as return and value types
 
+Anonymous object가 `local` 또는 `private` 타입으로 사용되지만 `inline declaration` (function or property)이 아닌 경우, 해당 객체의 모든 멤버는 다음 function 또는 property을 통해 액세스할 수 있다.
+
+```kt
+class C {
+    private fun getObject() = object {
+        val x: String = "x"
+    }
+
+    fun printX() {
+        println(getObject().x)
+    }
+}
+```
+
+이 function 또는 property이 public 또는 private inline인 경우 실제 type은 다음과 같다.
+
+- Anonymous object가 선언된 supertype을 가지지 않은 경우, `Any`
+- 정확히 하나의 선언된 supertype이 존재하면, 그 `선언된 supertype`
+- 선언된 supertype이 여러 개 존재하면, `명시적으로 선언된 supertype`
+
+```kt
+interface A {
+    fun funFromA() {}
+}
+interface B
+
+class C {
+    // The return type is Any. x is not accessible
+    fun getObject() = object {
+        val x: String = "x"
+    }
+
+    // The return type is A; x is not accessible
+    fun getObjectA() = object: A {
+        override fun funFromA() {}
+        val x: String = "x"
+    }
+
+    // The return type is B; funFromA() and x are not accessible
+    fun getObjectB(): B = object: A, B { // explicit return type is required
+        override fun funFromA() {}
+        val x: String = "x"
+    }
+}
+```
+
 #### Accessing variables from anonymous objects
 
 ### Object declarations
@@ -84,3 +130,4 @@ val ab: A = object : A(1), B {
 ### References
 
 - [https://kotlinlang.org/docs/object-declarations.html](https://kotlinlang.org/docs/object-declarations.html)
+- [https://play.kotlinlang.org/byExample/03_special_classes/04_Object](https://play.kotlinlang.org/byExample/03_special_classes/04_Object)
