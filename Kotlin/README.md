@@ -143,6 +143,21 @@ fun countClicks(window: JComponent) {
 
 ### Object declarations
 
+Singleton 패턴은 몇 가지 케이스들에 대해서 유용할 수 있고, 코틀린은 singletons를 쉽게 정의할 수 있게 해준다.
+
+```kt
+object DataProviderManager {
+    fun registerDataProvider(provider: DataProvider) {
+        // ...
+    }
+
+    val allDataProviders: Collection<DataProvider>
+        get() = // ...
+}
+```
+
+이것은 `object declaration`이라고 부르고, 언제나 `object` 뒤에 이름이 항상 따라온다.
+
 #### Companion objects
 
 #### Semantic difference between object expressions and declarations
