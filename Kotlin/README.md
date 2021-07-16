@@ -158,6 +158,28 @@ object DataProviderManager {
 
 이것은 `object declaration`이라고 부르고, 언제나 `object` 뒤에 이름이 항상 따라온다.
 
+변수(variable) 선언처럼, `object` 선언도 표현식(`expression`)이 아니며 assignment statement 의 우변에 사용할 수 없다.
+
+`object` 선언의 초기화는 thread-safe 하며, 첫번째 접근때 끝난다.
+
+`object`를 참조하려면 그것의 이름을 곧바로 사용하면 된다.
+
+```kt
+DataProviderManager.registerDataProvider(...)
+```
+
+어떤 `object`들은 supertypes를 가질 수 있다.
+
+```kt
+object DefaultListener : MouseAdapter() {
+    override fun mouseClicked(e: MouseEvent) { ... }
+
+    override fun mouseEntered(e: MouseEvent) { ... }
+}
+```
+
+> `object` 선언은 로컬(즉, 함수 내에 직접 중첩될 수 없음)일 수 없지만 다른 `object` 선언 또는 non-inner classes에 중첩될 수 있다.
+
 #### Companion objects
 
 #### Semantic difference between object expressions and declarations
