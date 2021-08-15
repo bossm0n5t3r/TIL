@@ -45,6 +45,7 @@
 
 ## Tables
 
+- [Interval Trees](./interval-trees.md)
 - [Segment Trees](./segment-trees.md)
 
 ## References
