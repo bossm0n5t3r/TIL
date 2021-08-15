@@ -8,6 +8,8 @@
 
 ## [Computer Science](./ComputerScience/README.md)
 
+## [Geometric Data Structures](./GeometricDataStructures/README.md)
+
 ## [Git](./Git/README.md)
 
 ### [GitHub](./Git/GitHub/README.md)
