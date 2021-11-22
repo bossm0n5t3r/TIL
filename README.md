@@ -20,6 +20,8 @@
 
 ## [Kotlin](./Kotlin/README.md)
 
+### [Exposed](./Kotlin/Exposed/README.md)
+
 ## [MSA](./MSA/README.md)
 
 ## [OS](./OS/README.md)
