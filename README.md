@@ -20,6 +20,8 @@
 
 ## [Go](./Go/README.md)
 
+## [Java](./Java/README.md)
+
 ## [Kotlin](./Kotlin/README.md)
 
 ### [Exposed](./Kotlin/Exposed/README.md)
